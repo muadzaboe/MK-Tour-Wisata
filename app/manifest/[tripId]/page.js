@@ -3,7 +3,7 @@ import { useEffect, useState, Suspense } from 'react'
 import { useParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 
-// 1. Komponen di dalam yang menggunakan useParams
+// Komponen ini yang menggunakan useParams
 function ManifestContent() {
   const { tripId } = useParams()
   const [trip, setTrip] = useState(null)
@@ -67,7 +67,7 @@ function ManifestContent() {
   )
 }
 
-// 2. Komponen utama yang membungkus dengan Suspense
+// Komponen utama yang membungkus dengan Suspense
 export default function ManifestPage() {
   return (
     <Suspense fallback={<p className="p-6 text-center">Memuat manifest...</p>}>
