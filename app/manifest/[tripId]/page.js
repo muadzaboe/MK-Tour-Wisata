@@ -1,10 +1,10 @@
 'use client'
-export const dynamic = 'force-dynamic'
 import { useEffect, useState, Suspense } from 'react'
 import { useParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 
-function Manifest() {
+// 1. Komponen di dalam yang menggunakan useParams
+function ManifestContent() {
   const { tripId } = useParams()
   const [trip, setTrip] = useState(null)
   const [data, setData] = useState([])
@@ -67,10 +67,11 @@ function Manifest() {
   )
 }
 
-export default function HalamanManifest() {
+// 2. Komponen utama yang membungkus dengan Suspense
+export default function ManifestPage() {
   return (
     <Suspense fallback={<p className="p-6 text-center">Memuat manifest...</p>}>
-      <Manifest />
+      <ManifestContent />
     </Suspense>
   )
 }
