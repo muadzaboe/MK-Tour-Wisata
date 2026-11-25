@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -23,7 +24,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+            <body className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col`}>
+        <Suspense fallback={<div className="p-6 text-center">Memuat...</div>}>
+          {children}
+        </Suspense>
+      </body>
     </html>
   );
 }
