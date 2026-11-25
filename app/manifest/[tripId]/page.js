@@ -1,9 +1,9 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 
-export default function Manifest() {
+function Manifest() {
   const { tripId } = useParams()
   const [trip, setTrip] = useState(null)
   const [data, setData] = useState([])
@@ -63,5 +63,13 @@ export default function Manifest() {
       </table>
       <p className="mt-3 text-sm">Total: {data.length} penumpang</p>
     </main>
+  )
+}
+
+export default function HalamanManifest() {
+  return (
+    <Suspense fallback={<p className="p-6 text-center">Memuat manifest...</p>}>
+      <Manifest />
+    </Suspense>
   )
 }
